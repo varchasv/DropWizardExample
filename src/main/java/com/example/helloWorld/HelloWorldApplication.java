@@ -15,6 +15,8 @@ public class HelloWorldApplication extends Application<HelloWorldConfiguration> 
                 configuration.getTemplate(),
                 configuration.getDefaultName()
         );
+        final ApplicationHealthCheck healthCheck = new ApplicationHealthCheck(configuration.getTemplate());
+        environment.healthChecks().register("dropWizardApplicationHealth",healthCheck);
         environment.jersey().register(resource);
     }
     //Add configuration by adding application with below params
